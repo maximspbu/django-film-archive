@@ -30,15 +30,15 @@ GENRES = [
 
 
 class Genre(models.Model):
-    genre = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, choices=GENRES)
 
 
     def __str__(self):
-        return self.genre
+        return self.name
 
 
     class Meta:
-        ordering = ["genre"]
+        ordering = ["name"]
 
 
 class Film(models.Model):
@@ -53,13 +53,19 @@ class Film(models.Model):
     genres = models.ManyToManyField('Genre', blank=True) # models.CharField(max_length=30, choices=GENRES)
     # director = models.ForeignKey('CastCrew', on_delete=models.SET_NULL, blank=True, null=True)
     # actors = models.ManyToManyField('CastCrew', blank=True, null=True)
-
+    
 
     def __str__(self):
         return self.name
     
     def get_absolute_url(self):
         return reverse('film_detail', args=[str(self.id)]) # /myapplication/mymodelname/2
+
+    def display_admin_genre(self):
+        '''returns string that display genre for admin panel'''
+        return ', '.join(genre.name for genre in self.genres.all()[:3])
+
+    display_admin_genre.short_description = 'Genre'
 
 
     class Meta:
