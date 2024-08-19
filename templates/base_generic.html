@@ -22,7 +22,7 @@
           {% block sidebar %}
             <ul class="sidebar-nav">
               <li><a href="{% url 'home' %}">Home</a></li>
-              <li><a href="">All films</a></li>
+              <li><a href="{% url 'films_home' %}">All films</a></li>
               <li><a href="">All actors (in dev)</a></li>
             </ul>
           {% endblock %}
