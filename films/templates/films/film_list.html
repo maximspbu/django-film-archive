@@ -1,8 +1,19 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Film Archive Home</h1>
-  <p>
-    Welcome to <em>Film Archive</em>.
-  </p>
+    <h1>Film List</h1>
+
+    {% if film_list %}
+    <ul>
+
+      {% for film in film_list %}
+      <li>
+        <a href="{{ film.get_absolute_url }}">{{ film.name }}</a> ({{film.release_date}})
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no films in the archive.</p>
+    {% endif %}
 {% endblock %}
