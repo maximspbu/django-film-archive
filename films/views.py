@@ -9,6 +9,7 @@ class HomePage(ListView):
     model = Film
     template = 'films/film_list.html'
     context_object_name = 'film_list'
+    paginate_by = 10
 
     def get_queryset(self) -> QuerySet[Any]:
         return self.model.objects.all()[:5]
