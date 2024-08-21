@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False)),
                 ('first_name', models.CharField(max_length=30)),
                 ('last_name', models.CharField(max_length=30)),
-                ('birth_date', models.DateTimeField(blank=True, null=True)),
+                ('birth_date', models.DateField(blank=True, null=True)),
                 ('profession', models.CharField(blank=True, choices=[('DIR', 'Director'), ('ACT', 'Actor')], max_length=30, null=True)),
             ],
             options={

@@ -49,7 +49,7 @@ class CastCrew(models.Model):
     id = models.BigAutoField(primary_key=True, auto_created=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    birth_date = models.DateTimeField(blank=True, null=True)
+    birth_date = models.DateField(blank=True, null=True)
     profession = models.CharField(max_length=30, blank=True, null=True, choices=PROFESSIONS)
     
 
