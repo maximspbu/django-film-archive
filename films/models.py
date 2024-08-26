@@ -64,7 +64,7 @@ class CastCrew(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     birth_date = models.DateField(blank=True, null=True)
-    profession = models.ManyToManyField('Profession')
+    professions = models.ManyToManyField('Profession')
     
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
@@ -74,7 +74,7 @@ class CastCrew(models.Model):
 
     def display_admin_profession(self):
         '''returns string that display profession for admin panel'''
-        return ', '.join(prof.name for prof in self.profession.all()[:3])
+        return ', '.join(prof.name for prof in self.professions.all()[:3])
 
     display_admin_profession.short_description = 'Profession'
 
@@ -92,8 +92,7 @@ class Film(models.Model):
     box_office = models.BigIntegerField(blank=True, null=True)
     cover = models.ImageField(blank=True, null=True)
     genres = models.ManyToManyField('Genre', blank=True)
-    directors = models.ManyToManyField('CastCrew', blank=True, related_name='directors_film')
-    actors = models.ManyToManyField('CastCrew', blank=True, related_name='actors_film')
+
     
     def __str__(self):
         return self.name
@@ -110,3 +109,11 @@ class Film(models.Model):
     class Meta:
         ordering = ["-release_date"]
         
+
+class FilmCastCrew(models.Model):
+    film = models.ForeignKey(Film, on_delete=models.CASCADE)
+    cast_crew = models.ForeignKey(CastCrew, on_delete=models.CASCADE)
+    profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.cast_crew} in {self.film} as {self.profession}'

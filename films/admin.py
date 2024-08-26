@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Genre, Film, CastCrew, Profession
+from .models import Genre, Film, CastCrew, Profession, FilmCastCrew
 
 
 @admin.register(Genre)
@@ -12,8 +12,27 @@ class ProfessionAdmin(admin.ModelAdmin):
 
 @admin.register(Film)
 class FilmAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'release_date', 'running_time', 'display_admin_genre', 'budget', 'box_office')
+    list_display = ('id', 
+                    'name', 
+                    'release_date', 
+                    'running_time', 
+                    'display_admin_genre', 
+                    'budget', 
+                    'box_office',
+                    )
 
 @admin.register(CastCrew)
 class CastCrewAdmin(admin.ModelAdmin):
-    list_display = ('id', 'first_name', 'last_name', 'birth_date', 'display_admin_profession')
+    list_display = ('id', 
+                    'first_name', 
+                    'last_name', 
+                    'birth_date', 
+                    'display_admin_profession',
+                    )
+
+@admin.register(FilmCastCrew)
+class FilmCastCrewAdmin(admin.ModelAdmin):
+    list_display = ('film', 
+                    'cast_crew', 
+                    'profession', 
+                    )
