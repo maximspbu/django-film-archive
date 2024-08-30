@@ -4,6 +4,6 @@
   <h1>{{ castcrew.first_name }} {{ castcrew.last_name }}</h1>
 
   <p><strong>Birth date:</strong> {{ castcrew.birth_date }}</p>
-  <p><strong>Profession:</strong> {{ castcrew.profession }}</p>
+  <p><strong>Professions:</strong> {% for prof in castcrew.professions.all %} {{ prof.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
 
 {% endblock %}

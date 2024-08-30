@@ -1,8 +1,9 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+{% load static %}
   <h1>{{ film.name }}</h1>
-
+  <img src="{% static 'images/covers/' %}{{ film.cover.name }}" alt="{% static 'images/covers/' %}{{ film.name }}">
   <p><strong>Storyline:</strong> {{ film.storyline }}</p>
   <p><strong>Release date:</strong> {{ film.release_date }}</p>
   <p><strong>Running time:</strong> {{ film.running_time }}</p>
