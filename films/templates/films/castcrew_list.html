@@ -8,7 +8,7 @@
 
       {% for cast_crew in cast_crew_list %}
       <li>
-        <a href="{{ cast_crew.get_absolute_url }}">{{ cast_crew.first_name }} {{ cast_crew.last_name }}</a> ({{cast_crew.profession}})
+        <a href="{{ cast_crew.get_absolute_url }}">{{ cast_crew.first_name }} {{ cast_crew.last_name }}</a> ({{cast_crew.professions.all.first.name}})
       </li>
       {% endfor %}
 

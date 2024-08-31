@@ -9,10 +9,10 @@ class HomePage(ListView):
     model = Film
     template = 'films/film_list.html'
     context_object_name = 'film_list'
-    paginate_by = 10
+    paginate_by = 20
 
     def get_queryset(self) -> QuerySet[Any]:
-        return self.model.objects.all()[:5]
+        return self.model.objects.all()
     
 
 class FilmDetail(DetailView):
@@ -30,3 +30,7 @@ class CastCrewList(ListView):
     model = CastCrew
     template = 'films/cast_crew_list.html'
     context_object_name = 'cast_crew_list'
+    paginate_by = 20
+
+    def get_queryset(self) -> QuerySet[Any]:
+        return self.model.objects.all()
