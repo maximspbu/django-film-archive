@@ -10,5 +10,6 @@
   <p><strong>Budget:</strong> {{ film.budget }}</p>
   <p><strong>Box office:</strong> {{ film.box_office }}</p>
   <p><strong>Genre:</strong> {% for genre in film.genres.all %} {{ genre.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-
+  <p><strong>Director:</strong> <a href="{{ director.get_absolute_url }}">{{ director }}</a></p>
+  <p><strong>Actors:</strong> {% if actors %} {% for actor in actors %} <a href="{{ actor.get_absolute_url }}">{{ actor }}</a>, {% endfor %} {% endif %}</p>
 {% endblock %}

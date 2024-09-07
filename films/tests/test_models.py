@@ -1,5 +1,5 @@
 from django.test import TestCase
-from films.models import Film, Profession
+from films.models import Film
 from datetime import datetime, timedelta
 
 class FilmModelTest(TestCase):

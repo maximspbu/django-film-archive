@@ -3,10 +3,10 @@
 {% block content %}
     <h1>Cast/Crew List</h1>
 
-    {% if cast_crew_list %}
+    {% if castcrew_list %}
     <ul>
 
-      {% for cast_crew in cast_crew_list %}
+      {% for cast_crew in castcrew_list %}
       <li>
         <a href="{{ cast_crew.get_absolute_url }}">{{ cast_crew.first_name }} {{ cast_crew.last_name }}</a> ({{cast_crew.professions.all.first.name}})
       </li>
