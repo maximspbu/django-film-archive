@@ -1,6 +1,13 @@
+import os
+from django import setup
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "film_archive.settings")
+setup()
+
 from django.test import TestCase
 from ..models import Film
 from datetime import datetime, timedelta
+
 
 
 class FilmListViewTest(TestCase):

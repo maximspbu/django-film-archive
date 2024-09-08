@@ -5,5 +5,6 @@
 
   <p><strong>Birth date:</strong> {{ castcrew.birth_date }}</p>
   <p><strong>Professions:</strong> {% for prof in castcrew.professions.all %} {{ prof.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+  <p><strong>Films:</strong> {% if films %} {% for film in films %} <a href="{{ film.get_absolute_url }}">{{ film.name }}</a>, {% endfor %} {% endif %}</p>
 
 {% endblock %}
