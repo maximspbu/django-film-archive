@@ -22,8 +22,8 @@
           {% block sidebar %}
             <ul class="sidebar-nav">
               <li><a href="{% url 'home' %}">Home</a></li>
-              <li><a href="">All films</a></li>
-              <li><a href="">All actors (in dev)</a></li>
+              <li><a href="{% url 'film_home' %}">All films</a></li>
+              <li><a href="{% url 'cast_crew_list' %}">All Cast/Crew members</a></li>
             </ul>
           {% endblock %}
         </div>
