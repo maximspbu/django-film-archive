@@ -3,6 +3,12 @@
 {% block content %}
     <h1>Film List</h1>
 
+    <form action="" method="get">
+      {{ form.as_table }}
+      <input type="submit" value="OK" />
+      <a href="{% url 'films_home' %}"><button type="button">Clear</button></a>
+    </form>
+
     {% if film_list %}
     <ul>
 

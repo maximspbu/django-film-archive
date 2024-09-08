@@ -1,9 +1,11 @@
 from typing import Any
 from django.db.models.base import Model as Model
 from django.db.models.query import QuerySet
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
 from .models import Film, CastCrew, FilmCastCrew
+from .forms import SearchFilmForm
 
 
 class HomePage(ListView):
@@ -13,11 +15,20 @@ class HomePage(ListView):
     paginate_by = 20
 
     def get_queryset(self) -> QuerySet[Any]:
-        #film_ids = self.model.objects.values_list('film', flat=True).distinct()
-        #print([i for i in film_ids])
-        #print(set([getattr(i, 'film') for i in FilmCastCrew.objects.filter(film__id__in=film_ids)]))
-        return Film.objects.all()
-        #return self.model.objects.filter(film__in=self.model.objects.select_related('film').values('name')).distinct()
+        queryset = Film.objects.all()
+        form = SearchFilmForm(self.request.GET)
+        if self.request.GET and form.is_valid():
+            if form.cleaned_data.get('name'):
+                if form.cleaned_data['name'].strip() == '':
+                    return queryset
+                queryset = queryset.filter(name__icontains=form.cleaned_data['name'])
+
+        return queryset
+    
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['form'] = SearchFilmForm(self.request.GET or None)
+        return context
     
 
 class FilmDetail(DetailView):
@@ -29,9 +40,7 @@ class FilmDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Получаем список участников через FilmCastCrew, фильтруя по текущему фильму
         context['cast_crew'] = FilmCastCrew.objects.filter(film=self.object)
-        #print([i.profession for i in context['cast_crew']])
         context['director'] = [i.cast_crew for i in context['cast_crew'] if i.profession.name=='Director'][0]
         context['actors'] = [i.cast_crew for i in context['cast_crew'] if i.profession.name=='Actor']
         return context
@@ -44,7 +53,6 @@ class CastCrewDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Получаем список участников через FilmCastCrew, фильтруя по текущему фильму
         context['films'] = [i.film for i in FilmCastCrew.objects.filter(cast_crew=self.object)]
         return context
 
@@ -52,7 +60,7 @@ class CastCrewDetail(DetailView):
 class CastCrewList(ListView):
     model = CastCrew
     template = 'films/castcrew_list.html'
-    context_object_name = 'cast_crew_list'
+    context_object_name = 'castcrew_list'
     paginate_by = 20
 
     def get_queryset(self) -> QuerySet[Any]:
