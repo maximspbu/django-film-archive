@@ -10,7 +10,7 @@ class CustomUserAdmin(admin.ModelAdmin):
         'last_name',
         'registration_date',
         'is_active',
-        'is_stuff',
+        'is_staff',
         'is_superuser',
     )
 
