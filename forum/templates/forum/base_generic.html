@@ -1,8 +1,7 @@
-
 <!doctype html>
 <html lang="en">
   <head>
-    {% block title %}<title>Film Archive</title>{% endblock %}
+    {% block title %}<title>Film Archive Forum</title>{% endblock %}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -23,9 +22,9 @@
           {% block sidebar %}
             <ul class="sidebar-nav">
               <li><a href="{% url 'home' %}">Home</a></li>
-              <li><a href="{% url 'films_home' %}">All films</a></li>
-              <li><a href="{% url 'cast_crew_list' %}">All Cast/Crew members</a></li>
-              <li><a href="{% url 'forum_home' %}">Forum</a></li>
+              <li><a href="{% url 'user_list' %}">Users</a></li>
+              <li><a href="{% url 'topic_list' %}">Topics</a></li>
+              <li><a href="{% url 'review_list' %}">Reviews</a></li>
             </ul>
           {% endblock %}
         </div>
@@ -34,21 +33,3 @@
     </div>
   </body>
 </html>
-
-{% block pagination %}
-  {% if is_paginated %}
-    <div class="pagination">
-      <span class="page-links">
-        {% if page_obj.has_previous %}
-          <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
-        <span class="page-current">
-          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-        {% if page_obj.has_next %}
-          <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-        {% endif %}
-      </span>
-    </div>
-  {% endif %}
-{% endblock %}
