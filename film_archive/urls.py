@@ -21,5 +21,6 @@ from .views import Home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('films/', include('films.urls'), name='films'),
+    path('forum/', include('forum.urls'), name='forum'),
     path('', Home.as_view(), name='home'),
 ]
