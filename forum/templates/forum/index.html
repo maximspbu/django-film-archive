@@ -1,1 +1,9 @@
 {% extends "forum/base_generic.html" %}
+
+{% block content %}
+<h1>Welcome to Film Archive forum!</h1>
+
+<a href="{% url 'signup' %}">Sign Up</a><br>
+<a href="{% url 'login' %}">Log in</a>
+
+{% endblock %}

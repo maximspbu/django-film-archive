@@ -1,1 +1,8 @@
 {% extends "forum/base_generic.html" %}
+
+{% block content %}
+<h1>{{ customuser.first_name }} {{ customuser.last_name }}</h1>
+<p><strong>Email:</strong> {{ customuser.email }}</p>
+<p><strong>Bio:</strong> {{ customuser.bio }}</p>
+<p><strong>Registration date:</strong> {{ customuser.registration_date }}</p>
+{% endblock %}

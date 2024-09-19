@@ -1,1 +1,15 @@
 {% extends "forum/base_generic.html" %}
+
+{% block content %}
+
+{% if customuser_list %}
+    {% for user in customuser_list %}
+    <li>
+        <a href="{{ user.get_absolute_url }}">{{ user.email }}</a>
+    </li>
+    {% endfor %}
+{% else %}
+    <p>There is no users.</p>
+{% endif %}
+
+{% endblock %}
