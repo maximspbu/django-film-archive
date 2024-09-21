@@ -49,6 +49,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     
     def get_absolute_url(self):
         return reverse('user_detail', args=[str(self.id)])
+    
+    class Meta:
+        ordering = ['id']
 
 
 class BaseContent(models.Model):
@@ -64,6 +67,7 @@ class BaseContent(models.Model):
         return reverse(f'{self._meta.model_name.lower()}_detail', args=[str(self.id)])
 
     class Meta:
+        ordering = ['id'] # '-created_at'
         abstract = True
 
 
