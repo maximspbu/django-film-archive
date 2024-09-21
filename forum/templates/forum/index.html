@@ -2,8 +2,19 @@
 
 {% block content %}
 <h1>Welcome to Film Archive forum!</h1>
-
-<a href="{% url 'signup' %}">Sign Up</a><br>
-<a href="{% url 'login' %}">Log in</a>
+{% if user.is_authenticated %}
+    <p>Your profile:</p>
+    <p><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Bio:</strong> {{ user.bio }}</p>
+    <p><strong>Registration date:</strong> {{ user.registration_date }}</p>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">logout</button>
+    </form>
+{% else %}
+    <a href="{% url 'signup' %}">Sign Up</a><br>
+    <a href="{% url 'login' %}">Log in</a>
+{% endif %}
 
 {% endblock %}

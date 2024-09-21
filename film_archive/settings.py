@@ -135,6 +135,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'forum.CustomUser'
 
+LOGIN_REDIRECT_URL = 'forum_home'
+
+LOGOUT_REDIRECT_URL = 'forum_home'
+
 # Logging
 
 # LOGGING = {
