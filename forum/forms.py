@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
-from .models import CustomUser
+from .models import CustomUser, Topic
 
 
 class SignUpForm(UserCreationForm):
@@ -15,11 +15,11 @@ class SignUpForm(UserCreationForm):
 
         ]
 
-
-class LogInForm(ModelForm):
+class TopicCreateForm(ModelForm):
     class Meta:
-        model = CustomUser
+        model = Topic
         fields = [
-            'email',
-            'password',
+            'title',
+            #'author',
+            'text',
         ]

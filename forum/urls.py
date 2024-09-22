@@ -13,6 +13,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name="forum/login.html", redirect_authenticated_user=True), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('users/', views.UserListView.as_view(), name='user_list'),
+    path('topics/create/', views.TopicCreateView.as_view(), name='topic_create'),
     path('topics/<pk>/', views.TopicDetailView.as_view(), name='topic_detail'),
     path('topics/', views.TopicListView.as_view(), name='topic_list'),
     path('reviews/<pk>/', views.ReviewDetailView.as_view(), name='review_detail'),
