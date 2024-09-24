@@ -7,35 +7,47 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Genre',
+            name="Genre",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('genre', models.CharField(max_length=30)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("genre", models.CharField(max_length=30)),
             ],
             options={
-                'ordering': ['genre'],
+                "ordering": ["genre"],
             },
         ),
         migrations.CreateModel(
-            name='Film',
+            name="Film",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=100, unique=True)),
-                ('storyline', models.TextField(blank=True, max_length=1000, null=True)),
-                ('release_date', models.DateField(blank=True, null=True)),
-                ('running_time', models.DateTimeField(blank=True, null=True)),
-                ('budget', models.BigIntegerField(blank=True, null=True)),
-                ('box_office', models.BigIntegerField(blank=True, null=True)),
-                ('cover', models.ImageField(blank=True, null=True, upload_to='')),
-                ('genres', models.ManyToManyField(blank=True, to='films.genre')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True, primary_key=True, serialize=False
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, unique=True)),
+                ("storyline", models.TextField(blank=True, max_length=1000, null=True)),
+                ("release_date", models.DateField(blank=True, null=True)),
+                ("running_time", models.DateTimeField(blank=True, null=True)),
+                ("budget", models.BigIntegerField(blank=True, null=True)),
+                ("box_office", models.BigIntegerField(blank=True, null=True)),
+                ("cover", models.ImageField(blank=True, null=True, upload_to="")),
+                ("genres", models.ManyToManyField(blank=True, to="films.genre")),
             ],
             options={
-                'ordering': ['-release_date'],
+                "ordering": ["-release_date"],
             },
         ),
     ]
